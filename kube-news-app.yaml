@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: webcolor
+  name: novosga
   namespace: argocd
 spec:
   destination:
@@ -12,4 +12,9 @@ spec:
     path: ./
     repoURL: https://github.com/marcusjava/kubernetes_sga.git
     targetRevision: HEAD
-  syncPolicy: {}
+  syncPolicy:
+    syncOptions:
+      - "CreateNamespace=true"
+    automated:
+      selfHeal: true
+      prune: true
